@@ -9,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace Omgtitb.Learning.AspNetCore
+namespace Omgtitb.Learning.AspNetCore.WebApp
 {
     public class Startup
     {

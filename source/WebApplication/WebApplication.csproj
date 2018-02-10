@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <AssemblyName>Omgtitb.Learning.AspNetCore</AssemblyName>
-    <RootNamespace>Omgtitb.Learning.AspNetCore</RootNamespace>
+    <AssemblyName>Omgtitb.Learning.AspNetCore.WebApp</AssemblyName>
+    <RootNamespace>Omgtitb.Learning.AspNetCore.WebApp</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,6 +16,10 @@
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AppModel\AppModel.csproj" />
   </ItemGroup>
 
 </Project>

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace Omgtitb.Learning.AspNetCore
+namespace Omgtitb.Learning.AspNetCore.WebApp
 {
     public class Program
     {
