@@ -9,7 +9,13 @@ namespace Omgtitb.Learning.AspNetCore.AppModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        
+
+        public Pose()
+        {
+            Id = 0;
+            Name = string.Empty;
+        }
+
         public Pose(int id, string name)
         {
             if (string.IsNullOrEmpty(name)) throw new ArgumentException(nameof(name));

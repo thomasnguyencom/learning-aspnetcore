@@ -18,25 +18,38 @@ namespace Omgtitb.Learning.AspNetCore.WebApp.Controllers
         // PUT      /api/pose/{id}  Update item     item            none
         // DELETE   /api/pose/{id}  Delete item     none            none
 
-        IPoseRepository _repository;
+        private readonly PoseContext _context;
 
-        public PoseController()
+        public PoseController(PoseContext context)
         {
-            _repository = new PoseRepository();
+            _context = context;
+
+            if (_context.PoseItems.Count() == 0)
+            {
+                _context.PoseItems.Add(new Pose(1, "Warrior One"));
+                _context.PoseItems.Add(new Pose(2, "Warrior Two"));
+                _context.SaveChanges();
+            }
         }
 
         // GET api/pose
         [HttpGet]
         public IEnumerable<Pose> Get()
         {
-            return _repository.Get();
+            return _context.PoseItems.ToList();
         }
 
         // GET api/pose/5
-        [HttpGet("{id}")]
-        public Pose Get(int id)
+        [HttpGet("{id}", Name = "GetPose")]
+        public IActionResult Get(int id)
         {
-            return _repository.Get(id);
+            var item = _context.PoseItems.FirstOrDefault(p => p.Id == id);
+
+            if (item == null)
+            {
+                return NotFound();
+            }
+            return new ObjectResult(item);
         }
 
         // POST api/pose

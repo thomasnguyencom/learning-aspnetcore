@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Omgtitb.Learning.AspNetCore.AppCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace Omgtitb.Learning.AspNetCore.WebApp
 {
@@ -23,6 +25,7 @@ namespace Omgtitb.Learning.AspNetCore.WebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<PoseContext>(opt => opt.UseInMemoryDatabase("PoseList"));
             services.AddMvc();
         }
 
