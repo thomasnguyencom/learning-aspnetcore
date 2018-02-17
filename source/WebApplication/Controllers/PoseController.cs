@@ -54,20 +54,56 @@ namespace Omgtitb.Learning.AspNetCore.WebApp.Controllers
 
         // POST api/pose
         [HttpPost]
-        public void Post([FromBody]string value)
+        public IActionResult Post([FromBody]Pose pose)
         {
+            if (pose == null)
+            {
+                return BadRequest();
+            }
+
+            _context.PoseItems.Add(pose);
+            _context.SaveChanges();
+
+            return CreatedAtRoute("GetTodo", new { id = pose.Id }, pose);
         }
 
         // PUT api/pose/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public IActionResult Put(int id, [FromBody]Pose pose)
         {
+            if (pose == null || pose.Id != id)
+            {
+                return BadRequest();
+            }
+
+            var thing = _context.PoseItems.FirstOrDefault(t => t.Id == id);
+            if (thing == null)
+            {
+                return NotFound();
+            }
+
+            thing.Name = pose.Name;
+
+            _context.PoseItems.Update(thing);
+            _context.SaveChanges();
+
+            return new NoContentResult();
         }
 
         // DELETE api/pose/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(long id)
         {
+            var todo = _context.PoseItems.FirstOrDefault(t => t.Id == id);
+            if (todo == null)
+            {
+                return NotFound();
+            }
+
+            _context.PoseItems.Remove(todo);
+            _context.SaveChanges();
+
+            return new NoContentResult();
         }
     }
 }
