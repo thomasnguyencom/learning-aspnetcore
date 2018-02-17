@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <AssemblyName>Omgtitb.Learning.AspNetCore.AppCore</AssemblyName>
+    <RootNamespace>Omgtitb.Learning.AspNetCore.AppCore</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AppModel\AppModel.csproj" />
+  </ItemGroup>
+
+</Project>
