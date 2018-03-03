@@ -23,13 +23,6 @@ namespace Omgtitb.Learning.AspNetCore.WebApp.Controllers
         public PoseController(PoseContext context)
         {
             _context = context;
-
-            if (_context.PoseItems.Count() == 0)
-            {
-                _context.PoseItems.Add(new Pose(1, "Warrior One"));
-                _context.PoseItems.Add(new Pose(2, "Warrior Two"));
-                _context.SaveChanges();
-            }
         }
 
         // GET api/pose
@@ -41,7 +34,7 @@ namespace Omgtitb.Learning.AspNetCore.WebApp.Controllers
 
         // GET api/pose/5
         [HttpGet("{id}", Name = "GetPose")]
-        public IActionResult Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
             var item = _context.PoseItems.FirstOrDefault(p => p.Id == id);
 
@@ -54,7 +47,7 @@ namespace Omgtitb.Learning.AspNetCore.WebApp.Controllers
 
         // POST api/pose
         [HttpPost]
-        public IActionResult Post([FromBody]Pose pose)
+        public async Task<IActionResult> Post([FromBody]Pose pose)
         {
             if (pose == null)
             {
@@ -69,7 +62,7 @@ namespace Omgtitb.Learning.AspNetCore.WebApp.Controllers
 
         // PUT api/pose/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]Pose pose)
+        public async Task<IActionResult> Put(int id, [FromBody]Pose pose)
         {
             if (pose == null || pose.Id != id)
             {
@@ -92,7 +85,7 @@ namespace Omgtitb.Learning.AspNetCore.WebApp.Controllers
 
         // DELETE api/pose/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(long id)
+        public async Task<IActionResult> Delete(long id)
         {
             var todo = _context.PoseItems.FirstOrDefault(t => t.Id == id);
             if (todo == null)
