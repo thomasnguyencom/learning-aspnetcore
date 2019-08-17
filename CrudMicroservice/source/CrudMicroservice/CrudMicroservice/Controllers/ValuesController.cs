@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FyrSoft.WaaS.ConfigManRepository;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace CrudMicroservice.Controllers
 {
@@ -14,7 +16,10 @@ namespace CrudMicroservice.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "value1", "value2" };
+            var sccmUser = new SccmUser();
+            string json = JsonConvert.SerializeObject(sccmUser);
+
+            return new string[] { json };
         }
 
         // GET api/values/5
